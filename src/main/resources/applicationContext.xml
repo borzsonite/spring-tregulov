@@ -7,14 +7,20 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
+    <context:property-placeholder location="classpath:application.properties"/>
+
     <bean id="myPet" class="ru.spring.tregulovcourse.Dog">
     </bean>
 
     <bean id="myPerson" class="ru.spring.tregulovcourse.Person" >
 <!--        <constructor-arg ref="myPet"/> создание бина с помощью конструктора-->
-        <property name="pet" ref="myPet"/> <!-- создание бина с помощью сеттера-->
-        <property name="name" value="Serger"/>
-        <property name="age" value="45"/>
+        <property name="pet" ref="myPet"/> <!-- создание бина с помощью сеттера и ссылки на бин-->
+        <!--  <property name="name" value="Serge"/> --> <!-- задание поля с помощью сетера и значения-->
+        <!--<property name="age" value="45"/>--> <!-- задание поля с помощью сетера и значения-->
+        <property name="name" value="${person.name}"/>
+        <property name="age" value="${person.age}"/>
+
+
      </bean>
 
 </beans>
