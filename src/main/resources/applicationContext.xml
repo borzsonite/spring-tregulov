@@ -7,11 +7,14 @@
     http://www.springframework.org/schema/context
     http://www.springframework.org/schema/context/spring-context.xsd">
 
-    <bean id="myPet" class="ru.spring.tregulovcourse.Cat">
+    <bean id="myPet" class="ru.spring.tregulovcourse.Dog">
     </bean>
 
     <bean id="myPerson" class="ru.spring.tregulovcourse.Person" >
-        <constructor-arg ref="myPet"/>
+<!--        <constructor-arg ref="myPet"/> создание бина с помощью конструктора-->
+        <property name="pet" ref="myPet"/> <!-- создание бина с помощью сеттера-->
+        <property name="name" value="Serger"/>
+        <property name="age" value="45"/>
      </bean>
 
 </beans>
