@@ -8,7 +8,7 @@ public class Test1 {
                 new ClassPathXmlApplicationContext("applicationContext.xml");
         Pet pet = context.getBean("myPet", Pet.class); // указывать лучше интерфейс,
         // чтобы потом не менять код когда потребуется кошка вместо  собаки
-        Person person = new Person(pet);
+        Person person = new Person();
         person.call();
 
 

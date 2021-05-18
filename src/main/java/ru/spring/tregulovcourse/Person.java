@@ -1,19 +1,31 @@
 package ru.spring.tregulovcourse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+@Component("personBean")
 public class Person {
+   // @Autowired
+   // @Qualifier("catBean")
     private Pet pet;
     private String name;
     private int age;
 
     public Person() {
-
+        System.out.println("Person bean created...");
     }
 
-    public Person(Pet pet) {
+    @Autowired
+    public Person(@Qualifier("dog") Pet pet) {
+        System.out.println("Person bean created...");
         this.pet = pet;
     }
 
+//    @Autowired
+//    @Qualifier("dog")
     public void setPet(Pet pet) {
+        System.out.println("Class Person set pet");
         this.pet = pet;
     }
 
