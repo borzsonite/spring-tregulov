@@ -11,9 +11,10 @@ public class UniLibrary {
 
      }
 
-    public void returnBook() {
+    public String returnBook() {
         System.out.println("Мы возвращаем книгу в UniLibrary");
-        System.out.println("---------------------------------");
+        int a = 10/0;
+        return "Война и мир";
 
     }
 

@@ -7,7 +7,13 @@ public class Test2 {
         AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(MyConfig.class);
         University university = context.getBean("university", University.class);
         university.addStudents();
-        university.getStudents();
+        try{
+            System.out.println(university.getStudents());
+        } catch (Exception e) {
+            System.out.println("Поймано исключение "+ e);
+        }
+
+
 
         context.close();
     }

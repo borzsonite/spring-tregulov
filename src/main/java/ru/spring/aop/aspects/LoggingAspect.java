@@ -7,6 +7,7 @@ import org.aspectj.lang.annotation.Pointcut;
 import org.aspectj.lang.reflect.MethodSignature;
 import org.springframework.core.annotation.Order;
 import org.springframework.stereotype.Component;
+import ru.spring.aop.Book;
 
 @Component
 @Aspect
@@ -62,6 +63,18 @@ public class LoggingAspect {
         System.out.println("methodSignature.getMethod() = " + methodSignature.getMethod());
         System.out.println("methodSignature.returnType() = " + methodSignature.getReturnType());
         System.out.println("methodSignature.getName() = " + methodSignature.getName());
+
+        if(methodSignature.getName().equals("addBook")) {
+            Object[] objects = joinPoint.getArgs();
+            for(Object obj: objects) {
+                if(obj instanceof Book) {
+                    Book book = (Book) obj;
+                    System.out.println("Информация о книге: наименование - " + book.getName() + " Автор - " + book.getAuthor() + " Год издания - " + book.getYearOfPublication());
+                } else if (obj instanceof String ){
+                    System.out.println("Книгу добавил - " + obj);
+                }
+            }
+        }
 
         System.out.println("beforeGetLoggingAdvice: логирование попытки добавить книгу/журнал");
         System.out.println("---------------------------------");
