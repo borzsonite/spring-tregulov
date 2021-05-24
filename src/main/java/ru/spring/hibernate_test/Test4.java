@@ -5,26 +5,23 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.spring.hibernate_test.entity.Employee;
 
-public class Test1 {
+public class Test4 {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration() // 0. Создаем фабрику сессий
                 .configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
                 .buildSessionFactory();
 
-        try{
-            Employee emp = new Employee("Maria", "Petrova", "PR", 500);
+        try {
             Session session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             session.beginTransaction(); // 2. Начинаем транзакцию
-            session.save(emp); // 3. Делаем запрос к базе
-            //session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
-            int myId = emp.getId();
-            //session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
-            //session.beginTransaction(); // 2. Начинаем транзакцию
-            Employee employee =  session.get(Employee.class, myId); // 3. Делаем запрос к базе
+//            Employee emp = session.get(Employee.class, 1);// 3. Делаем запрос к базе
+//            session.delete(emp);
+            session.createQuery("delete Employee where name = 'Alex'").executeUpdate();
+
+
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
-            System.out.println(employee);
 
 
         } finally {

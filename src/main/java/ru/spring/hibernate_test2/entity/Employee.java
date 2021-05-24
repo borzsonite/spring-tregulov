@@ -1,7 +1,5 @@
-package ru.spring.hibernate_test.entity;
+package ru.spring.hibernate_test2.entity;
 
-
-import org.hibernate.annotations.GeneratorType;
 
 import javax.persistence.*;
 

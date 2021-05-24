@@ -5,26 +5,29 @@ import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
 import ru.spring.hibernate_test.entity.Employee;
 
-public class Test1 {
+import java.util.List;
+
+public class Test2 {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration() // 0. Создаем фабрику сессий
                 .configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
                 .buildSessionFactory();
 
-        try{
-            Employee emp = new Employee("Maria", "Petrova", "PR", 500);
+        try {
             Session session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             session.beginTransaction(); // 2. Начинаем транзакцию
-            session.save(emp); // 3. Делаем запрос к базе
-            //session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
-            int myId = emp.getId();
-            //session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
-            //session.beginTransaction(); // 2. Начинаем транзакцию
-            Employee employee =  session.get(Employee.class, myId); // 3. Делаем запрос к базе
+          //  List<Employee> emps = session.createQuery("from Employee").getResultList();// 3. Делаем запрос к базе
+
+            List<Employee> emps = session.createQuery("from Employee where name='Alex' and salary>650").getResultList();
+
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
-            System.out.println(employee);
+
+            System.out.println("------------------------------------------------------");
+            for(Employee emp: emps) {
+                System.out.println(emp);
+            }
 
 
         } finally {

@@ -1,4 +1,4 @@
-package ru.spring.hibernate_test;
+package ru.spring.hibernate_test2;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
