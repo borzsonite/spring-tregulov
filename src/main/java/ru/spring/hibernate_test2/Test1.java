@@ -3,32 +3,41 @@ package ru.spring.hibernate_test2;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.spring.hibernate_test.entity.Employee;
+import ru.spring.hibernate_test2.entity.Employee;
+import ru.spring.hibernate_test2.entity.Detail;
 
 public class Test1 {
     public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration() // 0. Создаем фабрику сессий
-                .configure("hibernate.cfg.xml").addAnnotatedClass(Employee.class)
+                .configure("hibernate.cfg.xml")
+                .addAnnotatedClass(Employee.class)
+                .addAnnotatedClass(Detail.class)
                 .buildSessionFactory();
+        Session session = null;
 
-        try{
-            Employee emp = new Employee("Maria", "Petrova", "PR", 500);
-            Session session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
+        try {
+             session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
+//            Employee emp = new Employee("Oleg", "Ivanov", "sales", 800);
+//            Detail empDetail = new Detail("oleg@mail.ru", "Rostow", "=744444444");
+//            emp.setEmpDetail(empDetail);
             session.beginTransaction(); // 2. Начинаем транзакцию
-            session.save(emp); // 3. Делаем запрос к базе
+            Employee employee = session.get(Employee.class, 1);
+            session.delete(employee);
+//            session.save(emp); // 3. Делаем запрос к базе
             //session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
-            int myId = emp.getId();
+//            int myId = emp.getId();
             //session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             //session.beginTransaction(); // 2. Начинаем транзакцию
-            Employee employee =  session.get(Employee.class, myId); // 3. Делаем запрос к базе
+           // Employee employee = session.get(Employee.class, myId); // 3. Делаем запрос к базе
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
             System.out.println(employee);
 
 
         } finally {
             sessionFactory.close();
+            session.close();
         }
     }
 }
