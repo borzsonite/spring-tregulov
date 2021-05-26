@@ -1,15 +1,15 @@
-package ru.spring.hibernate_test2;
+package ru.spring.hibernate_one_to_one;
 
+import com.mysql.cj.xdevapi.SessionFactory;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.spring.hibernate_test2.entity.Detail;
-import ru.spring.hibernate_test2.entity.Employee;
+import ru.spring.hibernate_one_to_one.entity.Detail;
+import ru.spring.hibernate_one_to_one.entity.Employee;
 
 public class Test2 {
     public static void main(String[] args) {
 
-        SessionFactory sessionFactory = new Configuration() // 0. Создаем фабрику сессий
+        SessionFactory sessionFactory = (SessionFactory) new Configuration() // 0. Создаем фабрику сессий
                 .configure("hibernate.cfg.xml")
                 .addAnnotatedClass(Employee.class)
                 .addAnnotatedClass(Detail.class)
@@ -17,7 +17,7 @@ public class Test2 {
         Session session = null;
 
         try {
-            session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
+           // session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             session.beginTransaction(); // 2. Начинаем транзакцию
 //            Employee emp = new Employee("Kolya", "Nikolay", "HR", 650);
 //            Detail empDetail = new Detail("saha@mail.ru", "Piter", "3331555");
@@ -31,7 +31,7 @@ public class Test2 {
 
 
         } finally {
-            sessionFactory.close();
+          //  sessionFactory.close();
             session.close();
         }
     }

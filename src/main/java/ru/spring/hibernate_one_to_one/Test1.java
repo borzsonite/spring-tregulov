@@ -1,10 +1,10 @@
-package ru.spring.hibernate_test2;
+package ru.spring.hibernate_one_to_one;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.cfg.Configuration;
-import ru.spring.hibernate_test2.entity.Employee;
-import ru.spring.hibernate_test2.entity.Detail;
+import ru.spring.hibernate_one_to_one.entity.Employee;
+import ru.spring.hibernate_one_to_one.entity.Detail;
 
 public class Test1 {
     public static void main(String[] args) {
@@ -18,13 +18,13 @@ public class Test1 {
 
         try {
              session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
-//            Employee emp = new Employee("Oleg", "Ivanov", "sales", 800);
-//            Detail empDetail = new Detail("oleg@mail.ru", "Rostow", "=744444444");
-//            emp.setEmpDetail(empDetail);
+            Employee emp = new Employee("Oleg", "Ivanov", "sales", 800);
+            Detail empDetail = new Detail("oleg@mail.ru", "Rostow", "=744444444");
+            emp.setEmpDetail(empDetail);
             session.beginTransaction(); // 2. Начинаем транзакцию
-            Employee employee = session.get(Employee.class, 1);
-            session.delete(employee);
-//            session.save(emp); // 3. Делаем запрос к базе
+           // Employee emp = session.get(Employee.class, 1);
+           // session.delete(employee);
+            session.save(emp); // 3. Делаем запрос к базе
             //session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
 //            int myId = emp.getId();
@@ -32,7 +32,7 @@ public class Test1 {
             //session.beginTransaction(); // 2. Начинаем транзакцию
            // Employee employee = session.get(Employee.class, myId); // 3. Делаем запрос к базе
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
-            System.out.println(employee);
+            System.out.println(emp);
 
 
         } finally {
