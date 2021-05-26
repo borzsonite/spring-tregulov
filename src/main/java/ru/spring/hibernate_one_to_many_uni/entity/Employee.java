@@ -1,7 +1,5 @@
-package ru.spring.hibernate_one_to_many_bi.entity;
+package ru.spring.hibernate_one_to_many_uni.entity;
 
-
-import ru.spring.hibernate_one_to_one.entity.Detail;
 
 import javax.persistence.*;
 
