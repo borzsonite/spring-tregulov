@@ -24,8 +24,8 @@ public class Test2 {
 //            empDetail.setEmployee(emp); // Важно!!! Чтобы id прописывался нужно засетить оба объекта!!!!!!
 //            emp.setEmpDetail(empDetail);//Важно!!! Чтобы id прописывался нужно засетить оба объекта!!!!!!
 //            session.save(empDetail);//3. Делаем запрос к базе
-            Detail empDetail = session.get(Detail.class, 3);
-            session.delete(empDetail);
+            //Detail empDetail = session.get(Detail.class, 3);
+           // session.delete(empDetail);
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
 

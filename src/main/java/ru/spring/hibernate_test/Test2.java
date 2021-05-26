@@ -20,14 +20,14 @@ public class Test2 {
 
           //  List<Employee> emps = session.createQuery("from Employee").getResultList();// 3. Делаем запрос к базе
 
-            List<Employee> emps = session.createQuery("from Employee where name='Alex' and salary>650").getResultList();
+           // List<Employee> emps = session.createQuery("from Employee where name='Alex' and salary>650").getResultList();
 
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
-            System.out.println("------------------------------------------------------");
-            for(Employee emp: emps) {
-                System.out.println(emp);
-            }
+         //   System.out.println("------------------------------------------------------");
+         //   for(Employee emp: emps) {
+           //     System.out.println(emp);
+        //    }
 
 
         } finally {

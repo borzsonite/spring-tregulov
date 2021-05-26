@@ -13,7 +13,7 @@ public class Test1 {
                 .buildSessionFactory();
 
         try{
-            Employee emp = new Employee("Maria", "Petrova", "PR", 500);
+            Employee emp = new Employee("Alex", "Sidorov", "HR", 800);
             Session session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             session.beginTransaction(); // 2. Начинаем транзакцию
             session.save(emp); // 3. Делаем запрос к базе
@@ -22,7 +22,7 @@ public class Test1 {
             int myId = emp.getId();
             //session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
             //session.beginTransaction(); // 2. Начинаем транзакцию
-            Employee employee =  session.get(Employee.class, myId); // 3. Делаем запрос к базе
+            Object employee =  session.get(Employee.class, myId); // 3. Делаем запрос к базе
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
             System.out.println(employee);
 
