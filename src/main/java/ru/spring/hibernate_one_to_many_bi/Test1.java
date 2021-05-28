@@ -10,7 +10,7 @@ import java.util.List;
 
 
 public class Test1 {
-    public static void main(String[] args) {
+      public static void main(String[] args) {
 
         SessionFactory sessionFactory = new Configuration() // 0. Создаем фабрику сессий
                 .configure("hibernate.cfg.xml")
@@ -23,20 +23,22 @@ public class Test1 {
         try {
             session = sessionFactory.getCurrentSession(); // 1. Получаем сессию
 
-//            Department department = new Department("IT", 1000, 500);
-//            Employee emp1 = new Employee("Ivan", "Petrov", 800);
-//            Employee emp2 = new Employee("Elena", "Petrova", 1000);
-//            department.addEmployee(emp1);
-//            department.addEmployee(emp2);
+            Department department = new Department("sales", 1000, 500);
+            Employee emp1 = new Employee("Ivan", "Petrov", 800);
+            Employee emp2 = new Employee("Anton", "Ivanov", 1200);
+            Employee emp3 = new Employee("Mike", "Sidorov", 1100);
+            department.addEmployee(emp1);
+            department.addEmployee(emp2);
+            department.addEmployee(emp3);
             session.beginTransaction(); // 2. Начинаем транзакцию
-//            session.save(department);
+            session.save(department);
             //**************************************
 //            Department department = session.get(Department.class, 4);
 //            List<Employee> employees = department.getEmps();
 //            System.out.println(employees);
 
-            Employee employee = session.get(Employee.class, 7);
-            session.delete(employee);
+//            Employee employee = session.get(Employee.class, 7);
+//            session.delete(employee);
             session.getTransaction().commit(); // 4. Делаем комит (завершаем транзакцию)
 
         } finally {

@@ -1,6 +1,7 @@
 package ru.spring.hibernate_many_to_many.entity;
 
 import javax.persistence.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -11,39 +12,76 @@ public class Child {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
-    private int id;
-
-    @Column(name ="name")
-    private String name;
+    int id;
 
     @Column(name = "age")
-    private int age;
+    int age;
 
-    private List<Section> sections;
+    @Column(name = "name")
+    String name;
+
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(
+            name = "child_section",
+            joinColumns = @JoinColumn(name = "child_id"),
+            inverseJoinColumns = @JoinColumn(name = "section_id")
+    )
+    List<Section> sections;
 
     public Child() {
     }
 
     public Child(String name, int age) {
-        this.name = name;
         this.age = age;
+        this.name = name;
     }
 
     public void addSectionToChild(Section section) {
-        if(sections == null) {
+        if(section == null) {
             sections = new ArrayList<>();
         }
+
         sections.add(section);
+    }
 
+    public int getId() {
+        return id;
+    }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public List<Section> getSections() {
+        return sections;
+    }
+
+    public void setSections(List<Section> sections) {
+        this.sections = sections;
     }
 
     @Override
     public String toString() {
         return "Child{" +
                 "id=" + id +
-                ", name='" + name + '\'' +
                 ", age=" + age +
+                ", name='" + name + '\'' +
                 '}';
     }
 }
